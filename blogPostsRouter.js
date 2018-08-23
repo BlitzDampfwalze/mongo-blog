@@ -1,8 +1,10 @@
 const { BlogPost } = require('./models')
 
+const bodyParser = require('body-parser');
+
 module.exports = app => {
     app.post('/blogposts', (req, res) => {
-        console.log(req.body);
+        console.log('this is the body', req.body);
         const blogPost = new BlogPost({
             text: req.body.text,
         });
@@ -30,15 +32,15 @@ module.exports = app => {
             });
     });
 
-    app.get('/blogposts/:id', (req, res) => {
-        blogPost
-            .findById(req.params.id)
-            .then(doc => res.json(doc.serialize()))
-            .catch(error => {
-                console.log(error)
-                res.status(500).json({error: 'something went wrong!'});
-            });
-    });
+    // app.get('/blogposts/:id', (req, res) => {
+    //     blogPost
+    //         .findById(req.params.id)
+    //         .then(doc => res.json(doc.serialize()))
+    //         .catch(error => {
+    //             console.log(error)
+    //             res.status(500).json({error: 'something went wrong!'});
+    //         });
+    // });
 
 };
 

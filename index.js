@@ -8,6 +8,8 @@ mongoose.Promise = global.Promise;
 const app = express();
 
 app.use(morgan('common'));
+app.use(bodyParser.urlencoded({ extended: true })); //for postman
+
 app.use(bodyParser.json());
 
 require('./blogPostsRouter')(app);
